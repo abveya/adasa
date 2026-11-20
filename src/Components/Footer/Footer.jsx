@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import siteInfo from "../../data/siteInfo.json"
+import siteInfo from "../../data/siteInfo.json";
+import categoryData from "../../data/categories.json";
 import { useState } from "react";
 export default function Footer() {
-  // const info = siteInfo.siteInfo;
-  const [info, setInfo] = useState(siteInfo.siteInfo)
+  const [info, setInfo] = useState(siteInfo.siteInfo);
+  const [category, setCategory] = useState(categoryData.categories);
   return (
     <>
       <footer className="relative bg-[#0a0a0a] text-neutral-300 overflow-hidden border-t border-[#262626]">
@@ -17,12 +18,16 @@ export default function Footer() {
                   className="w-11 h-11 bg-linear-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center group-hover:scale-105 transition-all duration-300"
                   style={{ boxShadow: "rgba(249, 115, 22, 0.3) 0px 4px 20px" }}
                 >
-                  <span className="text-xl font-bold text-white">{info.name.split("").slice(0 , 1).join("")}</span>
+                  <span className="text-xl font-bold text-white">
+                    {info.name.split("").slice(0, 1).join("")}
+                  </span>
                 </div>
-                <span className="text-xl font-bold text-white">{info.name}</span>
+                <span className="text-xl font-bold text-white">
+                  {info.name}
+                </span>
               </Link>
               <p className="text-sm text-neutral-500 mb-6 leading-relaxed">
-               {info.description}
+                {info.description}
               </p>
               <div className="flex gap-2">
                 <Link
@@ -93,42 +98,19 @@ export default function Footer() {
                 <h3 className="text-white font-semibold">التصنيفات</h3>
               </div>
               <ul className="space-y-4">
-                <li>
-                  <Link
-                    to=""
-                    className="text-sm text-neutral-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <i className="fa-solid fa-angle-right w-4 h-4 opacity-0 -mr-4 group-hover:opacity-100 group-hover:mr-0 transition-all duration-300 text-orange-500 rotate-180 pointer-events-none"></i>
-                    إضاءة
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/blog"
-                    className="text-sm text-neutral-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <i className="fa-solid fa-angle-right w-4 h-4 opacity-0 -mr-4 group-hover:opacity-100 group-hover:mr-0 transition-all duration-300 text-orange-500 rotate-180 pointer-events-none"></i>
-                    بورتريه
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/blog"
-                    className="text-sm text-neutral-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <i className="fa-solid fa-angle-right w-4 h-4 opacity-0 -mr-4 group-hover:opacity-100 group-hover:mr-0 transition-all duration-300 text-orange-500 rotate-180 pointer-events-none"></i>
-                    مناظر طبيعيه
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/contact"
-                    className="text-sm text-neutral-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <i className="fa-solid fa-angle-right w-4 h-4 opacity-0 -mr-4 group-hover:opacity-100 group-hover:mr-0 transition-all duration-300 text-orange-500 rotate-180 pointer-events-none"></i>
-                    تقنيات
-                  </Link>
-                </li>
+                {category.slice(0,4).map((categoryName) => {
+                 return(
+                   <li>
+                    <Link
+                      to={`/blog?category=${encodeURIComponent(categoryName.name)}`}
+                      className="text-sm text-neutral-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2 group"
+                    >
+                      <i className="fa-solid fa-angle-right w-4 h-4 opacity-0 -mr-4 group-hover:opacity-100 group-hover:mr-0 transition-all duration-300 text-orange-500 rotate-180 pointer-events-none"></i>
+                      {categoryName.name}
+                    </Link>
+                  </li>
+                 )
+                })}
               </ul>
             </div>
             <div>
