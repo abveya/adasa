@@ -1,0 +1,9 @@
+{
+    "categories": [
+    { "name": "إضاءة", "count": 3, "color": "emerald" ,  "icon":"fa-sun" },
+    { "name": "بورتريه", "count": 3, "color": "purple" , "icon" : "fa-user" },
+    { "name": "مناظر طبيعية", "count": 2, "color": "blue" , "icon" :"fa-mountain-sun" },
+    { "name": "تقنيات", "count": 5, "color": "orange" , "icon":"fa-sliders" },
+    { "name": "معدات", "count": 3, "color": "emerald" ,"icon":"fa-sun" }
+  ]
+}
